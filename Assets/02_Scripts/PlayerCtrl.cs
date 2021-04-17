@@ -20,10 +20,19 @@ public class PlayerCtrl : MonoBehaviour
     
     private Animator anim;
 
-    public float currHp = 100.0f;
+    public float maxHealth = 100.0f;
+    public float currHealth;
+
+    public Hpbar healthBar;
+
+    public delegate void PlayerDieHandler();
+
+    public static event PlayerDieHandler OnplayerDie;
 
     IEnumerator Start()
     {
+        currHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         turnSpeed = 0.0f;
         tr = GetComponent<Transform>();
         anim = GetComponent<Animator>();
@@ -52,6 +61,28 @@ public class PlayerCtrl : MonoBehaviour
     {
         anim.SetFloat("SpeedV",v);
         anim.SetFloat("SpeedH",h);
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (currHealth > 0.0f && coll.CompareTag("PUNCH"))
+        {
+            currHealth -= 10.0f;
+            healthBar.setHealth(currHealth);
+            if (currHealth <= 0.0f)
+            {
+                OnplayerDie();
+            }
+        }
+    }
+    
+    void PlayerDie()
+    {
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+        foreach(GameObject monster in monsters)
+        {
+            monster.SendMessage("WinMon" , SendMessageOptions.DontRequireReceiver);
+        }
     }
 
 }
