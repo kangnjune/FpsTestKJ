@@ -47,20 +47,27 @@ public class PlayerCtrl : MonoBehaviour
 
     void Update()
     {
+        Move();
+        LookAround();
+        PlayAnimation();
+
+    }
+    void Move()
+    {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        r = Input.GetAxis("Mouse X");
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
         tr.Translate(moveDir.normalized * Time.deltaTime * moveSpeed);
-        tr.Rotate(Vector3.up * Time.deltaTime * turnSpeed * r);
-        PlayAnimation();
-        
     }
-
+    void LookAround()
+    {
+        r = Input.GetAxis("Mouse X");
+        tr.Rotate(Vector3.up * Time.deltaTime * turnSpeed * r);
+    }
     void PlayAnimation()
     {
-        anim.SetFloat("SpeedH",0.1f);
-        anim.SetFloat("SpeedV",0.1f);
+        anim.SetFloat("SpeedH",h);
+        anim.SetFloat("SpeedV",v);
     }
 
 
@@ -84,7 +91,9 @@ public class PlayerCtrl : MonoBehaviour
         {
             monster.SendMessage("WinMon" , SendMessageOptions.DontRequireReceiver);
         }
+        anim.SetTrigger("Die");
         GameManager.instance.IsGameOver = true;
+
     }
 
 }
