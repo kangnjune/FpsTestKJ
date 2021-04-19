@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7584883184055969788}
   - component: {fileID: 3634062032905443793}
   - component: {fileID: 7584883184055969731}
+  - component: {fileID: 8793866224843478342}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: BULLET
@@ -211,6 +212,32 @@ TrailRenderer:
   m_MinVertexDistance: 0.03
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!205 &8793866224843478342
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7584883184055969730}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 0.10841617
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7584883183607961190}
+  - screenRelativeHeight: 0.4115425
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7584883183607961190}
+  - screenRelativeHeight: 0.2422964
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &7584883183610121734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287,5 +314,10 @@ PrefabInstance:
 --- !u!4 &7584883183610254470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f3be3666e308d450f8cc9ad434580302, type: 3}
+  m_PrefabInstance: {fileID: 7584883183610121734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7584883183607961190 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: f3be3666e308d450f8cc9ad434580302, type: 3}
   m_PrefabInstance: {fileID: 7584883183610121734}
   m_PrefabAsset: {fileID: 0}

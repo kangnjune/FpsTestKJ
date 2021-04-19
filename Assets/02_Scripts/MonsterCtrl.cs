@@ -13,7 +13,7 @@ public class MonsterCtrl : MonoBehaviour
     private readonly int hashAttack = Animator.StringToHash("IsAttack");
     private readonly int hashHit = Animator.StringToHash("Hit");
     private readonly int hashDie = Animator.StringToHash("Die");
-
+    public GameObject sparkEffect;
     private float hp = 100.0f;
 
     public enum STATE {IDLE, ATTACK, TRACE, DIE}
@@ -27,7 +27,7 @@ public class MonsterCtrl : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerCtrl.OnplayerDie += this.WinMon;
+
 
         StartCoroutine(CheckState());
         StartCoroutine(MonsterAction());
@@ -36,7 +36,7 @@ public class MonsterCtrl : MonoBehaviour
 
     void OnDisable()
     {
-        PlayerCtrl.OnplayerDie -= this.WinMon;
+
     }
     void Awake()
     {
@@ -58,9 +58,9 @@ public class MonsterCtrl : MonoBehaviour
         {
             if(state == STATE.DIE)
             {
-                yield break;
+                yield break; // 해당 코루틴을 정지시킴.
             }
-            
+
             float distance = Vector3.Distance(monsterTr.position, playerTr.position);
 
             if (distance <= attackDist)
@@ -106,16 +106,25 @@ public class MonsterCtrl : MonoBehaviour
                     GetComponent<CapsuleCollider>().enabled = false;
                     agent.isStopped = true;
                     isDie = true;
+                    yield return new WaitForSeconds(2.0f);
+                    this.gameObject.SetActive(false);
                     break;
             }
+            
             yield return new WaitForSeconds(0.3f);
         }
     }
     void OnCollisionEnter(Collision coll)
     {
+        ContactPoint cont = coll.GetContact(0);
+        Vector3 normal = cont.normal;
+        Quaternion rot = Quaternion.LookRotation(-normal);
+
         if (coll.collider.CompareTag("BULLET"))
         {
             anim.SetTrigger(hashHit);
+            GameObject spark = Instantiate(sparkEffect, cont.point, rot);
+            Destroy(spark ,0.8f);
             Destroy(coll.gameObject);
             hp -=20.0f;
             if (hp<=0.0f)

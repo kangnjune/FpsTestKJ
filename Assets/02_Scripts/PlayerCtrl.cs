@@ -8,6 +8,7 @@ public class PlayerCtrl : MonoBehaviour
     private float v;
     private float r;
 
+
     [Header("이동속도 및 회전속도")]
     [Range(3.0f, 10.0f)]
 
@@ -15,9 +16,10 @@ public class PlayerCtrl : MonoBehaviour
     [Range(30.0f , 200.0f)]
     public float turnSpeedvalue = 150.0f;
     private float turnSpeed;
+    private Rigidbody rigidBody;
 
     private Transform tr;
-    
+
     private Animator anim;
 
     public float maxHealth = 100.0f;
@@ -48,20 +50,19 @@ public class PlayerCtrl : MonoBehaviour
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         r = Input.GetAxis("Mouse X");
-
-        Vector3 moveDir = (Vector3.forward*v) + (Vector3.right*h);
-
-        tr.Translate(moveDir.normalized*Time.deltaTime*moveSpeed);
-        tr.Rotate(Vector3.up*Time.deltaTime*turnSpeed*r);
-
-        PlayerAnimation();
+        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+        tr.Translate(moveDir.normalized * Time.deltaTime * moveSpeed);
+        tr.Rotate(Vector3.up * Time.deltaTime * turnSpeed * r);
+        PlayAnimation();
+        
     }
 
-    void PlayerAnimation()
+    void PlayAnimation()
     {
-        anim.SetFloat("SpeedV",v);
-        anim.SetFloat("SpeedH",h);
+        anim.SetFloat("SpeedH",0.1f);
+        anim.SetFloat("SpeedV",0.1f);
     }
+
 
     void OnTriggerEnter(Collider coll)
     {
@@ -71,7 +72,7 @@ public class PlayerCtrl : MonoBehaviour
             healthBar.setHealth(currHealth);
             if (currHealth <= 0.0f)
             {
-                OnplayerDie();
+                PlayerDie();
             }
         }
     }
@@ -83,6 +84,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             monster.SendMessage("WinMon" , SendMessageOptions.DontRequireReceiver);
         }
+        GameManager.instance.IsGameOver = true;
     }
 
 }

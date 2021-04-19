@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013950294986}
   - component: {fileID: 205000012825781400}
-  m_Layer: 0
+  - component: {fileID: 2295368948454271858}
+  - component: {fileID: 5636585619858746180}
+  m_Layer: 8
   m_Name: chainlink_group-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1000011042068464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.907953, y: 0, z: -2.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4000010556905108}
   - {fileID: 4000012676582732}
@@ -56,6 +58,32 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23000012367500464}
   m_Enabled: 1
+--- !u!65 &2295368948454271858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011042068464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.915818, y: 2.1684136, z: 0.3339827}
+  m_Center: {x: -0.18376064, y: 1.0324988, z: 0.00009727478}
+--- !u!114 &5636585619858746180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011042068464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651bc54b7b583d641939deebcf06d825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparkEffect: {fileID: 1000011945391522, guid: 78b71003e8b357d4bbf89c8b5e5e4f0e, type: 3}
 --- !u!1 &1000011915361750
 GameObject:
   m_ObjectHideFlags: 0

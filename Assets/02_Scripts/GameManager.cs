@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
         while(!IsGameOver)
         {
+            
             int idx = Random.Range(1,points.Count);
 
             GameObject monster = Instantiate<GameObject>(monsterPrefab);

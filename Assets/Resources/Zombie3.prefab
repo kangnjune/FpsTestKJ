@@ -59,7 +59,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4852295784193990141
 GameObject:
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8597a720af4418846aab4049ee556f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparkEffect: {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   state: 0
   traceDist: 50
   attackDist: 2
@@ -312,5 +313,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
